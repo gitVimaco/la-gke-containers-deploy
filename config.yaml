@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: vimaco
+  name: vimaco
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: vimaco
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+    type: RollingUpdate  
+  template:
+    metadata:
+      creationTimestamp: 
+      labels:
+        app: vimaco
+    spec:
+      containers:
+      - image: gcr.io/playground-s-11-182c95/vimaco:v1
+        name: vimaco
+
