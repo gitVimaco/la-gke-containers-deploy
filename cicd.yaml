@@ -1,0 +1,15 @@
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/gitVimaco/la-gke-containers-deploy.git']
+  dir: 'la-gke-containers-deploy'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/playground-s-11-a0a359/vimaco', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ["push", "gcr.io/playground-s-11-a0a359/vimaco"]
+- name: 'gcr.io/cloud-builders/gke-deploy:stable'
+  args:
+  - run
+  - --image=gcr.io/playground-s-11-a0a359/vimaco:latest
+  - --location=europe-west1-b
+  - --cluster=cluster-1
+images: ['gcr.io/playground-s-11-a0a359/vimaco']
