@@ -21,6 +21,6 @@ spec:
         app: vimaco
     spec:
       containers:
-      - image: gcr.io/playground-s-11-a0a359/vimaco:v1
+      - image: gcr.io/playground-s-11-a0a359/vimaco:v2
         name: vimaco
 
